@@ -131,7 +131,7 @@ adapter.registerSingleCollection = function registerCollection(connection, colle
     }
 
     try {
-      if (err.status_code == 404 && err.reason == 'no_db_file') {
+      if (err.status_code == 404 && (err.reason == 'no_db_file' || err.reason == 'Database does not exist.')) {
         db.db.create(collectionName, function createdDB(err) {
           if (err) {
             return cb(err);
